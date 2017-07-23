@@ -1,0 +1,35 @@
+html
+  head
+    title= 'Story game Test'
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    script
+      | var lookup = {};
+      each scene in scenes.scenes
+        | lookup[#{scene.scene}] = {};
+        | lookup[#{scene.scene}].image = "#{scene.image}";
+        | lookup[#{scene.scene}].text = "#{scene.text}";
+        - if (scene.options) {
+          | lookup[#{scene.scene}].options=[];
+          each option in scene.options
+            | lookup[#{scene.scene}].options[#{option.id}] = {};
+            | lookup[#{scene.scene}].options[#{option.id}].option = "#{option.option}";
+            | lookup[#{scene.scene}].options[#{option.id}].scene = "#{option.scene}";
+            | lookup[#{scene.scene}].options[#{option.id}].id = "#{option.id}";
+        - }
+
+  body
+    header
+      h1 Story game Framework
+    main
+      div(id='game')
+        // button(id='myBtn')
+        - var currentScene = 4;
+        img(src='' class='scene' id=currentScene height='800px' 'width=800px')
+        div(id='myModal' class='modal')
+            div(class='modal-content')
+              span(class='close') >
+              p(id='msg')
+              P(id="options")
+              
