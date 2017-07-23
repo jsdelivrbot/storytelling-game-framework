@@ -1,7 +1,8 @@
 {
-  "name": "sims",
+  "name": "storytelling game framework",
   "version": "0.0.1",
-  "description": "A sample Node.js app using Express 4",
+  "description": "A small framework for developing storytelling games Edit
+Add topics",
   "engines": {
     "node": "6.11.1"
   },
@@ -15,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/joeystevens00/animal-web-cams"
+    "url": "https://github.com/joeystevens00/storytelling-game-framework"
   },
   "keywords": [
     "node",
