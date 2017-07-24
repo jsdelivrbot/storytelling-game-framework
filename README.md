@@ -30,6 +30,7 @@ Each scene can have a mode. A mode defines how the scene is displayed:
 - *non-linear*: Expects options to exist and will wait for a selection.  
 - *auto*: Displays the text and waits for the config.wait setting (default 2000ms).  
 - *linear*: Displays the text and will wait for a the next scene button to be pressed.  
+
 See data/scene.json for more details  
 
 ## config
