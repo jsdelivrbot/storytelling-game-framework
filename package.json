@@ -1,8 +1,7 @@
 {
   "name": "storytelling game framework",
   "version": "0.0.1",
-  "description": "A small framework for developing storytelling games Edit
-Add topics",
+  "description": "A small framework for developing storytelling games",
   "engines": {
     "node": "6.11.1"
   },
