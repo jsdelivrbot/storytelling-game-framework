@@ -43,6 +43,7 @@ Inside of scene.json can be a config that is defined with the following properti
     "wait": 2000
 }
 ```  
+
 See data/scene.json for more details  
 ## Demo  
 ![demo](https://media.giphy.com/media/3o8dFljDMg8ub3jWGQ/giphy.gif)
