@@ -33,9 +33,9 @@ Each scene can have a mode. A mode defines how the scene is displayed:
 See data/scene.json for more details  
 
 ## config
-Inside of scene.json can be a config that is defined with the following properties:
-*wait*: Defines the wait time in ms of the auto mode.
-*mode*: Defines the starting/default mode. Note: Once a mode is set in a scene this is not used so it's best practice to not rely on this unless the entire game is in single mode.
+Inside of scene.json can be a config that is defined with the following properties:  
+*wait*: Defines the wait time in ms of the auto mode.  
+*mode*: Defines the starting/default mode. Note: Once a mode is set in a scene this is not used so it's best practice to not rely on this unless the entire game is in single mode.  
 ```
 "config":
 {
