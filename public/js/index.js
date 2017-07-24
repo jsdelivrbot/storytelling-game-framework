@@ -1,18 +1,17 @@
+// Globals
+var nextButton;
+var pauseButton;
+var playButton;
 var defaultTextSpeed = 70;
-var haltShowText = false;
+var autoModeTimeOut;
 var autoModeOff;
-// Displays text at speed
-var showText = function (target, message, index, interval, override) {
-  if (haltShowText && !override)
-  {
-    haltShowText = false;
-    return;
-  }
-
+var interruptAutoMode = false;
+var showTextTimeOut;
+var showText = function (target, message, index, interval) {
   if (index < message.length)
   {
     $(target).append(message[index++]);
-    setTimeout(function () { showText(target, message, index, interval, override); }, interval);
+    showTextTimeOut = setTimeout(function () { showText(target, message, index, interval); }, interval);
   }
   else
   {
@@ -20,6 +19,9 @@ var showText = function (target, message, index, interval, override) {
   }
 }
 
+var stopDisplayingText = function() {
+    clearTimeout(showTextTimeOut);
+};
 // Creates a new scene
 var newScene = function (text, image, sceneId) {
   setCurrentScene(sceneId);
@@ -29,9 +31,9 @@ var newScene = function (text, image, sceneId) {
   // Prep the scene
   clearMsgBox();
   // Override prevents text from displaying in new scene if a selection is made before it finishes displaying
-  var override;
-  haltShowText ? override = true :  override = false;
-  showText('#msg', text, 0, defaultTextSpeed, override);
+  //var override;
+  //haltShowText ? override = true :  override = false;
+  showText('#msg', text, 0, defaultTextSpeed);
 
   // Display the image
   document.querySelector("img.scene").src = 'img/' + image;
@@ -52,7 +54,6 @@ var displayOptions = function(sceneId) {
       $("#listoptions").append("<li><a href='#'  id=" + option.id + " class='option' target= " + option.scene + ">" + option.option + "</a></li>");
     });
     $(".option").on('click', function(e) {
-      haltShowText=true;
       e.preventDefault();
       setCurrentScene(parseInt(this.target)-1);
       nextScene();
@@ -61,9 +62,9 @@ var displayOptions = function(sceneId) {
   }
 }
 
-// Goes to the next scene. Use to create a linear story with .close
+// Goes to the next scene. Use to create a linear story with .next
 var nextScene = function() {
-
+  stopDisplayingText();
   var currentScene = getCurrentScene();
   var sceneText = lookup[currentScene+1].text;
   var sceneImage = lookup[currentScene+1].image;
@@ -91,13 +92,41 @@ var loadScenes = function () {
   var sceneImage = lookup[startScene].image;
   newScene(sceneText, sceneImage, startScene);
 }
-var turnOnLinearMode = function() {
-  var span = document.getElementsByClassName("close")[0];
+var enableNextButton = function() {
   // When the user clicks on <span> (x), goto the next scene
-  span.style.display="";
-  span.onclick = function()
+  nextButton.style.display="";
+  nextButton.onclick = function()
+  {
+    interruptAutoMode=true;
+    nextScene();
+  }
+};
+var checkMode = function(sceneId) {
+  if(lookup[sceneId].mode)
+  {
+    setMode(lookup[sceneId].mode);
+  }
+};
+
+var enablePlayButton = function() {
+  // When the user clicks on <span> (x), goto the next scene
+  playButton.style.display="";
+  pauseButton.style.display="none";
+  playButton.onclick = function()
   {
       nextScene();
+      enablePauseButton();
+  }
+};
+
+var enablePauseButton = function() {
+  // When the user clicks on <span> (x), goto the next scene
+  pauseButton.style.display="";
+  playButton.style.display="none";
+  pauseButton.onclick = function()
+  {
+      enablePlayButton();
+      turnOffAutoMode();
   }
 };
 var checkMode = function(sceneId) {
@@ -115,37 +144,45 @@ var turnOnAutoMode = function() {
       myVar = v;
       if (autoModeOff == false)
       {
-        setTimeout(function(){
-          nextScene();
+        autoModeTimeOut = setTimeout(function(){
+            nextScene();
         }, config.wait);
       }
     }
   });
 };
-
+var turnOffAutoMode = function() {
+    autoModeOff = true;
+    clearTimeout(autoModeTimeOut);
+};
 // Set the mode
 // Auto = Display text and go to the nextScene
 // non-linear = Display text + Options and wait
 // linear = Display text + show a nextScene arrow and wait
 var setMode = function(mode) {
-  var span = document.getElementsByClassName("close")[0];
-  console.log(mode);
+  config.mode = mode;
   if(mode == "linear")
   {
-    autoModeOff = true;
-    config.mode = mode;
-    turnOnLinearMode();
+    playButton.style.display="none";
+    pauseButton.style.display="none";
+    turnOffAutoMode();
+
+    enableNextButton();
   }
   else if (mode == "non-linear")
   {
-    autoModeOff = true;
-    span.style.display="none";
+    turnOffAutoMode();
+    // Disable next button
+    nextButton.style.display="none";
+    pauseButton.style.display="none";
+    playButton.style.display="none";
   }
   else if (mode == "auto")
   {
-    span.style.display="none";
     autoModeOff = false;
     turnOnAutoMode();
+    enableNextButton();
+    enablePauseButton();
   }
   else
   {
@@ -154,10 +191,14 @@ var setMode = function(mode) {
 }
 
 window.addEventListener("load", function load(event){
+  nextButton = document.getElementsByClassName("next")[0];
+  pauseButton = document.getElementsByClassName("pause")[0];
+  playButton = document.getElementsByClassName("play")[0];
   config.mode = config.mode || "linear";
   config.wait = config.wait || 2000;
   if(document.readyState === 'complete') {
     $("#options").hide();
+    playButton.style.display="none";
     loadScenes();
 
   }

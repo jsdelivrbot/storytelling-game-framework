@@ -41,17 +41,23 @@ div#game {
     width: 40%; /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
-.close {
+/* The Control Buttons */
+.pause, .next, .play {
     color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
+.pause:hover, .next:hover,
+.pause:focus, .next:focus {
+    color: grey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.play:hover, .play:focus {
+    color: grey;
     text-decoration: none;
     cursor: pointer;
 }
