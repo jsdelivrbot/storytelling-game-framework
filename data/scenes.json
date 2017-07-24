@@ -1,10 +1,16 @@
 {
+  "config":
+  {
+      "mode": "non-linear",
+      "wait": 2000
+  },
   "scenes":
   [
       {
           "scene": 1,
           "image": "image-01.jpeg",
-          "text": "Deep in the forrest a tree fell."
+          "text": "Deep in the forrest a tree fell.",
+          "mode": "auto"
       },
       {
         "scene": 2,
@@ -14,12 +20,14 @@
       {
         "scene": 3,
         "image": "image-02.jpeg",
-        "text": "After another thing happened! And flowers!"
+        "text": "After another thing happened! And flowers!",
+        "mode": "linear"
       },
       {
         "scene": 4,
         "image": "image-03.jpeg",
         "text": "There is a fork in the road which way do you go?",
+        "mode": "non-linear",
         "options":
         [
           {
