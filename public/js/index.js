@@ -1,7 +1,5 @@
 // Globals
-var nextButton;
-var pauseButton;
-var playButton;
+
 var defaultTextSpeed = 70;
 var autoModeTimeOut;
 var autoModeOff;
@@ -19,6 +17,18 @@ var showText = function (target, message, index, interval) {
   }
 }
 
+var displayAuthor = function(sceneId) {
+    if(lookup[sceneId].author)
+    {
+      uiAuthorModal.style.display = "";
+      uiAuthorMsg.innerHTML = lookup[sceneId].author;
+    }
+    else
+    {
+      uiAuthorModal.style.display = "none";
+    }
+};
+
 var stopDisplayingText = function() {
     clearTimeout(showTextTimeOut);
 };
@@ -30,13 +40,10 @@ var newScene = function (text, image, sceneId) {
 
   // Prep the scene
   clearMsgBox();
-  // Override prevents text from displaying in new scene if a selection is made before it finishes displaying
-  //var override;
-  //haltShowText ? override = true :  override = false;
   showText('#msg', text, 0, defaultTextSpeed);
-
+  displayAuthor(sceneId);
   // Display the image
-  document.querySelector("img.scene").src = 'img/' + image;
+  document.querySelector("#game").style.backgroundImage = 'url(img/' + image + ')';
 
   // Display options if any
   displayOptions(sceneId);
@@ -73,11 +80,11 @@ var nextScene = function() {
 
 // Fetches the current scene
 var getCurrentScene = function() {
-  return parseInt(document.querySelector("img.scene").id);
+  return parseInt(document.querySelector("#game").attributes.scene.value);
 }
 // Sets the current scene. Useful for non-linear stories
 var setCurrentScene = function(id) {
-  document.querySelector("img.scene").id = id;
+  document.querySelector("#game").attributes.scene.value = id;
 }
 
 // Clears the msg box text
@@ -118,6 +125,14 @@ var enablePlayButton = function() {
       enablePauseButton();
   }
 };
+
+var enableControls = function() {
+  controls.style.display = "";
+}
+
+var disableControls = function() {
+  controls.style.display = "none";
+}
 
 var enablePauseButton = function() {
   // When the user clicks on <span> (x), goto the next scene
@@ -163,6 +178,7 @@ var setMode = function(mode) {
   config.mode = mode;
   if(mode == "linear")
   {
+    enableControls()
     playButton.style.display="none";
     pauseButton.style.display="none";
     turnOffAutoMode();
@@ -173,12 +189,11 @@ var setMode = function(mode) {
   {
     turnOffAutoMode();
     // Disable next button
-    nextButton.style.display="none";
-    pauseButton.style.display="none";
-    playButton.style.display="none";
+    disableControls()
   }
   else if (mode == "auto")
   {
+    enableControls()
     autoModeOff = false;
     turnOnAutoMode();
     enableNextButton();
@@ -189,17 +204,3 @@ var setMode = function(mode) {
       console.log("Invalid mode detected: " + mode);
   }
 }
-
-window.addEventListener("load", function load(event){
-  nextButton = document.getElementsByClassName("next")[0];
-  pauseButton = document.getElementsByClassName("pause")[0];
-  playButton = document.getElementsByClassName("play")[0];
-  config.mode = config.mode || "linear";
-  config.wait = config.wait || 2000;
-  if(document.readyState === 'complete') {
-    $("#options").hide();
-    playButton.style.display="none";
-    loadScenes();
-
-  }
-});

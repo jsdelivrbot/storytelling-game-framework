@@ -4,6 +4,8 @@ html
     <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/index.js"></script>
+    <script src="js/index-init.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     script
       | var lookup = {};
@@ -12,6 +14,7 @@ html
         | lookup[#{scene.scene}].image = "#{scene.image}";
         | lookup[#{scene.scene}].text = "#{scene.text}";
         | lookup[#{scene.scene}].mode = "#{scene.mode}";
+        | lookup[#{scene.scene}].author = "#{scene.author}";
         - if (scene.options) {
           | lookup[#{scene.scene}].options=[];
           each option in scene.options
@@ -30,14 +33,19 @@ html
     header
       h1 Story game Framework
     main
-      div(id='game')
+      - var currentScene = 1;
+      div(id='game' scene=currentScene)
         // button(id='myBtn')
-        - var currentScene = 1;
-        img(src='' class='scene' id=currentScene height='800px' 'width=800px')
-        div(id='myModal' class='modal')
-            div(class='modal-content')
+        div(class='ui-bottom')
+          div(id='author' class='modal')
+            div(id='author' class='modal-content')
+              p(id='author')
+          div(id='controls' class='modal')
+            div(id='controls' class='modal-content')
               span(class='pause') <i class="material-icons">pause</i>
               span(class='play') <i class="material-icons">play_arrow</i>
               span(class='next') <i class="material-icons">arrow_forward</i>
-              p(id='msg')
-              P(id="options")
+          div(id='message' class='modal')
+              div(id='message' class='modal-content')
+                p(id='msg')
+                P(id="options")
