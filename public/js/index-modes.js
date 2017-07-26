@@ -15,7 +15,7 @@ var setMode = function(mode) {
   config.mode = mode;
   if(mode == "linear")
   {
-    enableControls()
+    enableControls();
     playButton.style.display="none";
     pauseButton.style.display="none";
     turnOffAutoMode();
@@ -26,11 +26,11 @@ var setMode = function(mode) {
   {
     turnOffAutoMode();
     // Disable next button
-    disableControls()
+    disableControls();
   }
   else if (mode == "auto")
   {
-    enableControls()
+    enableControls();
     autoModeOff = false;
     turnOnAutoMode();
     enableNextButton();

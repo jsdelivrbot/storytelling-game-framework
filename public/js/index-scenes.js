@@ -16,6 +16,7 @@ var newScene = function (text, image, sceneId) {
 
   // Display options if any
   displayOptions(sceneId);
+  snapUIIntoShape();
 }
 
 

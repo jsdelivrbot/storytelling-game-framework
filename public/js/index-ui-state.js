@@ -105,3 +105,28 @@ var getTextDisplay = function(sceneId) {
   var displaySpeed = lookup[sceneId].textDisplay || config.textDisplay;
   return displaySpeed;
 }
+
+var snapUIIntoShape = function() {
+  windowWidth = $( window ).width()-1;
+  windowHeight = $( window ).height()-1;
+  // Setup UI placement
+
+  document.documentElement.style.setProperty("--width", windowWidth + "px");
+  document.documentElement.style.setProperty("--height", windowHeight + "px");
+  // Align the top of controls to be with the top of message
+  uiControlsModalContent.style.bottom = uiMessageModalContent.offsetHeight - uiControlsModalContent.offsetHeight;
+
+  // Align the left of the controls to the right of the message
+  var controlsPadding = parseFloat(uiControlsModalContentJq.css('padding'));
+  uiControlsModalContent.style.right = ((windowWidth-uiMessageModalContent.offsetWidth)/2)-uiControlsModalContent.offsetWidth-controlsPadding
+
+  //Align the bottom of the author modal to the top of the message
+  uiAuthorModalContent.style.bottom = uiMessageModalContent.offsetHeight;
+
+  // Align the left of the author modal with the left of the message
+  var authorPadding = parseFloat(uiAuthorModalContentJq.css('padding'));
+  uiAuthorModalContent.style.left = (($( window ).width()-uiMessageModalContent.offsetWidth)/2);
+
+
+
+};
