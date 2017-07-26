@@ -66,3 +66,6 @@ Start with node webkit
 
 Start as a webserver  
 `node app.js`
+
+## Nw.js  
+The height/width should be specified in package.json for launching with nw.js. The UI should support all height/widths.  

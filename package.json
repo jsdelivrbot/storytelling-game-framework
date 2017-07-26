@@ -8,8 +8,8 @@
   "node-main": "./app.js",
   "main": "http://localhost:3000",
   "window": {
-    "height": 801,
-    "width": 801
+    "height": 800,
+    "width": 800
   },
   "scripts": {
     "start": "node app.js"
