@@ -3,35 +3,36 @@
   {
       "mode": "non-linear",
       "wait": 2000,
-      "textDisplay": 10
+      "textDisplay": 70
   },
   "scenes":
   [
       {
           "scene": 1,
           "image": "image-01.jpeg",
-          "text": "Deep in the forrest a tree fell.",
+          "text": "Auto mode makes scene by scene go by seamlessly.",
           "mode": "auto",
-          "author": "narrator",
-          "textDisplay": 100
+          "author": "narrator"
       },
       {
         "scene": 2,
         "image": "image-01.jpeg",
-        "text": "Then something happened!"
+        "text": "As you can see...",
+        "author": "narrator"
       },
       {
         "scene": 3,
         "image": "image-02.jpeg",
-        "text": "After another thing happened! And flowers!",
+        "text": "The user should click the next button now.",
         "mode": "linear",
-        "textDisplay": 1000
+        "author": "narrator"
       },
       {
         "scene": 4,
         "image": "image-03.jpeg",
-        "text": "There is a fork in the road which way do you go?",
+        "text": "Then you can prompt the user to make a selection...",
         "mode": "non-linear",
+        "author": "narrator",
         "options":
         [
           {

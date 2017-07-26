@@ -87,10 +87,12 @@ var showText = function (target, message, index, interval) {
   if (index < message.length)
   {
     $(target).append(message[index++]);
+    snapUIIntoShape();
     showTextTimeOut = setTimeout(function () { showText(target, message, index, interval); }, interval);
   }
   else
   {
+    snapUIIntoShape();
     finishedDisplayingText = true;
   }
 }
