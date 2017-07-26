@@ -8,6 +8,7 @@
   --width: 800px;
   --height: 800px;
 }
+body{ overflow-x:hidden;overflow-y:hidden; }
 
 html {
   background-color: #333333;
