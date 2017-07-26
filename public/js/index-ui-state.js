@@ -12,6 +12,8 @@ var disableControls = function() {
 // Enable the pause button and setup the click event
 var enablePauseButton = function() {
   // When the user clicks on <span> (x), goto the next scene
+  autoModeOff = false;
+  turnOnAutoMode();
   pauseButton.style.display="";
   playButton.style.display="none";
   pauseButton.onclick = function()
