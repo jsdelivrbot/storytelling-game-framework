@@ -5,24 +5,44 @@ html
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/index.js"></script>
     <script src="js/index-init.js"></script>
+    <script src="js/index-ui-state.js"></script>
+    <script src="js/index-modes.js"></script>
+    <script src="js/index-scenes.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     script
+      //- Load up the scenes in the frontend
       | var lookup = {};
+      //- Go over each scene
       each scene in scenes.scenes
-        | lookup[#{scene.scene}] = {};
-        | lookup[#{scene.scene}].image = "#{scene.image}";
-        | lookup[#{scene.scene}].text = "#{scene.text}";
-        | lookup[#{scene.scene}].mode = "#{scene.mode}";
-        | lookup[#{scene.scene}].author = "#{scene.author}";
-        - if (scene.options) {
-          | lookup[#{scene.scene}].options=[];
-          each option in scene.options
-            | lookup[#{scene.scene}].options[#{option.id}] = {};
-            | lookup[#{scene.scene}].options[#{option.id}].option = "#{option.option}";
-            | lookup[#{scene.scene}].options[#{option.id}].scene = "#{option.scene}";
-            | lookup[#{scene.scene}].options[#{option.id}].id = "#{option.id}";
-        - }
+        - var i = scene.scene;
+        //- Create our scene object
+        | lookup[#{i}] = {};
+        //- Go over key/value in the individual scene
+        each key in Object.keys(scene)
+          - var sceneValue = scene[key];
+
+          //- If we have options
+          - if (key == "options") {
+            | lookup[#{i}].options = [];
+
+            //- Go over each option
+            each option in scene.options
+              //- Create our option object
+              | lookup[#{i}].options[#{option.id}] = {};
+
+              //- Go over each key/value in the individual option
+              each optionKey in Object.keys(option)
+                - var optionValue = option[optionKey];
+
+                //- Add the key/value pairs to the option object
+                | lookup[#{i}].options[#{option.id}].#{optionKey} = "#{optionValue}";
+          - }
+          - else {
+            //- Otherwise just add the key/value to the scene object
+            | lookup[#{i}].#{key} = "#{sceneValue}";
+          - }
+      //- Load up the config in the frontend
       | var config = {};
       each key in Object.keys(scenes.config)
         - var configValue = scenes.config[key];
