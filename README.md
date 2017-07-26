@@ -59,3 +59,10 @@ See data/scene.json for more details
 ## Demo  
 Heroku: https://mighty-journey-33323.herokuapp.com/  
 ![demo](https://media.giphy.com/media/3o8dFljDMg8ub3jWGQ/giphy.gif)
+
+## Launching
+Start with node webkit  
+`nw .`  
+
+Start as a webserver  
+`node app.js`
