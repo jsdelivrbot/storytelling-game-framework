@@ -58,7 +58,7 @@ Inside of scene.json can be a config that is defined with the following properti
 See data/scene.json for more details  
 ## Demo  
 Heroku: https://mighty-journey-33323.herokuapp.com/  
-![demo](https://media.giphy.com/media/3o8dFljDMg8ub3jWGQ/giphy.gif)
+![demo](https://media.giphy.com/media/3oeHLflPRQbnQQ36oM/giphy.gif)
 
 ## Launching
 Start with node webkit  
