@@ -39,6 +39,7 @@ The game is made up of scenes which are defined in JSON. A scene has an image, s
   - *id*: The id of the option  
   - *option*: The text value of the option  
   - *scene*: The target scene that the user will be taken to upon selection  
+
 See data/scene.json for examples.    
 ## Config
 Inside of scene.json can be a config that is defined with the following properties:  
