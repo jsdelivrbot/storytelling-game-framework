@@ -9,6 +9,7 @@ var windowHeight;
 // Init Game
 window.addEventListener("load", function load(event){
   // Setup UI variables
+
   nextButton = document.getElementsByClassName("next")[0];
   pauseButton = document.getElementsByClassName("pause")[0];
   playButton = document.getElementsByClassName("play")[0];

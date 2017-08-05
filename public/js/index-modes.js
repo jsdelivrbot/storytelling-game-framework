@@ -5,6 +5,10 @@ var checkMode = function(sceneId) {
   {
     setMode(lookup[sceneId].mode);
   }
+  else
+  {
+    checkMode(sceneId-1);
+  }
 };
 
 // Set the mode

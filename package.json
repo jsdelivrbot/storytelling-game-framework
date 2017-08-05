@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "express": "*",
-    "pug": "^0.1.0"
+    "pug": "^0.1.0",
+    "node-persist": "2.1.0",
+    "body-parser": "1.17.2"
   },
   "repository": {
     "type": "git",

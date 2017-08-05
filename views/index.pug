@@ -8,7 +8,7 @@ html
     <script src="js/index-ui-state.js"></script>
     <script src="js/index-modes.js"></script>
     <script src="js/index-scenes.js"></script>
-
+    <script src="js/save-load.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     script
       //- Load up the scenes in the frontend
@@ -52,7 +52,7 @@ html
   body
     main
       div(class='loader')
-      - var currentScene = 1;
+      - var currentScene = scenes.config.startScene;
       div(id='game' scene=currentScene)
         // button(id='myBtn')
         div(class='ui-bottom')
