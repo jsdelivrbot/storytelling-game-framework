@@ -22,6 +22,10 @@ window.addEventListener("load", function load(event){
   uiControlsModalContent = document.querySelector('#controls.modal-content');
   uiControlsModalContentJq = $('#controls.modal-content');
 
+  // Dev tools
+  shakeButton =  document.getElementsByClassName("devToolsShake")[0];
+
+
 
   // Config defaults
   config.mode = config.mode || "linear";

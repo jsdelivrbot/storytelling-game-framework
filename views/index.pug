@@ -2,6 +2,7 @@ html
   head
     title= 'Storytelling game framework'
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/dev-tools.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/index.js"></script>
     <script src="js/index-init.js"></script>
@@ -9,6 +10,10 @@ html
     <script src="js/index-modes.js"></script>
     <script src="js/index-scenes.js"></script>
     <script src="js/save-load.js"></script>
+    <script src="js/shake.js"></script>
+    <script src="js/dev-tools.js"></script>
+    <script src="js/keyboard-bindings.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     script
       //- Load up the scenes in the frontend
@@ -68,3 +73,6 @@ html
               div(id='message' class='modal-content')
                 p(id='msg')
                 P(id="options")
+        div(class='ui-dev-tools')
+          div(id='shake' class='modal')
+            span(class='devToolsShake') <i class="material-icons">error</i>
